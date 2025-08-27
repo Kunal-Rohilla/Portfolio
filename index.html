@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kunal Rohilla · Portfolio</title>
+  <meta name="description" content="Portfolio of Kunal Rohilla — software enthusiast with experience in hackathons, a patented project (HOLOMED‑X), and full‑stack projects." />
+  <meta property="og:title" content="Kunal Rohilla · Portfolio" />
+  <meta property="og:description" content="Software enthusiast • 1 patent holder • Projects in Python, React, MongoDB • PwC Launchpad Trainee" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f16;
+      --surface: #121826;
+      --muted-surface: #101522;
+      --text: #e6eaf2;
+      --muted: #a6b0c3;
+      --brand: #7c9bff;
+      --brand-2: #8ee8d8;
+      --card: #0f1522;
+      --ring: #2a3652;
+      --accent: #c9f31d; /* subtle pop for badges */
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,155,255,0.12), transparent 60%),
+                  radial-gradient(900px 600px at -10% 10%, rgba(142,232,216,0.10), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(180deg, rgba(11,15,22,0.9), rgba(11,15,22,0.6));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--ring);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 0.2px; }
+    .brand .logo {
+      width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0f16; font-weight: 900;
+      box-shadow: 0 10px 25px rgba(124,155,255,0.25);
+    }
+    .links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .links a { color: var(--muted); font-weight: 500; }
+    .links a:hover { color: var(--text); }
+    .cta { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      padding: 10px 14px; border-radius: 12px; border: 1px solid var(--ring);
+      background: var(--surface); color: var(--text); font-weight: 600; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0f16; border: none; }
+    .btn:hover { transform: translateY(-1px); }
+
+    /* Hero */
+    .hero { padding: 56px 0 28px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: center; }
+    .chip {
+      display: inline-flex; gap: 8px; align-items: center; padding: 6px 10px; border-radius: 999px;
+      background: rgba(124,155,255,0.12); color: var(--brand-2); border: 1px dashed var(--ring);
+      font-weight: 600; font-size: 12px; letter-spacing: 0.3px;
+    }
+    h1 { font-size: clamp(28px, 4.2vw, 52px); line-height: 1.1; margin: 12px 0 12px; }
+    .subtitle { color: var(--muted); font-size: clamp(14px, 2vw, 18px); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .badge { padding: 6px 10px; border-radius: 999px; background: #0e1421; border: 1px solid var(--ring); color: var(--muted); font-size: 12px; }
+
+    .contact-card { background: var(--card); border: 1px solid var(--ring); border-radius: 16px; padding: 18px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row { display: grid; gap: 6px; }
+    .label { color: var(--muted); font-size: 12px; }
+    .value { font-weight: 600; }
+
+    /* Sections */
+    section { padding: 28px 0; }
+    .section-title { font-size: 20px; font-weight: 800; margin-bottom: 16px; letter-spacing: 0.3px; }
+    .grid { display: grid; gap: 16px; }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .card {
+      background: var(--surface); border: 1px solid var(--ring); border-radius: 16px; padding: 16px;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .meta { color: var(--muted); font-size: 13px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip-sm { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #0c1220; border: 1px solid var(--ring); color: var(--muted); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--ring); padding: 20px 0 40px; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid.cols-2 { grid-template-columns: 1fr; }
+      .grid.cols-3 { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .links { display: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kunal Rohilla",
+    "jobTitle": "Software Enthusiast",
+    "email": "mailto:kunnalrohilla@gmail.com",
+    "telephone": "+91 8882209935",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gurugram",
+      "addressRegion": "Haryana",
+      "postalCode": "122001",
+      "addressCountry": "IN"
+    },
+    "url": "https://www.linkedin.com/in/kunal-rohilla-618765283/",
+    "knowsAbout": [
+      "C", "C++", "Python", "Java", "HTML5", "CSS", "JavaScript", "SQL",
+      "MySQL", "Data Structures & Algorithms", "OOP", "Operating System", "DBMS", "Software Engineering"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">KR</div>
+        <div>Kunal Rohilla</div>
+      </div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Training</a>
+        <a href="#education">Education</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="cta">
+        <a class="btn" href="https://drive.google.com/file/d/1iZdBkD1Ueftq_KLOA5FtoXlTTHI9SKPh/view?usp=drive_link" download>Download Résumé</a>
+        <a class="btn primary" href="mailto:kunnalrohilla@gmail.com">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div>
+          <span class="chip">Software Enthusiast • Patent Holder</span>
+          <h1>Building scalable, user‑centric products that solve real problems.</h1>
+          <p class="subtitle">A well‑organized, goal‑oriented developer with national‑level hackathon experience and a knack for turning ideas into impactful, production‑ready experiences.</p>
+          <div class="badges">
+            <span class="badge">1× Patented: HOLOMED‑X</span>
+            <span class="badge">PwC Launchpad Trainee (Jan–Jul 2025)</span>
+            <span class="badge">Smart India Hackathon 2023 & 2024</span>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-grid">
+            <div class="row"><span class="label">Name</span><span class="value">Kunal Rohilla</span></div>
+            <div class="row"><span class="label">Location</span><span class="value">Gurugram, Haryana · 122001</span></div>
+            <div class="row"><span class="label">Phone</span><a class="value" href="tel:+918882209935">+91 8882209935</a></div>
+            <div class="row"><span class="label">Email</span><a class="value" href="mailto:kunnalrohilla@gmail.com">kunnalrohilla@gmail.com</a></div>
+            <div class="row"><span class="label">LinkedIn</span><a class="value" target="_blank" rel="noopener" href="https://www.linkedin.com/in/kunal-rohilla-618765283/">/kunal-rohilla-618765283</a></div>
+            <div class="row"><span class="label">Résumé</span><a class="value" href="https://drive.google.com/file/d/1iZdBkD1Ueftq_KLOA5FtoXlTTHI9SKPh/view?usp=drive_link" download>Download PDF</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-title">About</div>
+      <div class="card">
+        <p>
+          I’m a motivated software enthusiast with a strong foundation in computer science and a passion for building scalable products. I enjoy solving real‑world user problems, collaborating in teams, and shipping experiences that are efficient, reliable, and delightful.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-title">Technical Competencies</div>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Languages</h3>
+          <div class="chips">
+            <span class="chip-sm">C</span>
+            <span class="chip-sm">C++</span>
+            <span class="chip-sm">Python</span>
+            <span class="chip-sm">Java</span>
+            <span class="chip-sm">HTML5</span>
+            <span class="chip-sm">CSS</span>
+            <span class="chip-sm">JavaScript</span>
+            <span class="chip-sm">SQL</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Databases</h3>
+          <div class="chips">
+            <span class="chip-sm">MySQL</span>
+            <span class="chip-sm">MongoDB</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Core CS & Tools</h3>
+          <div class="chips">
+            <span class="chip-sm">DSA</span>
+            <span class="chip-sm">OOP</span>
+            <span class="chip-sm">Operating Systems</span>
+            <span class="chip-sm">DBMS</span>
+            <span class="chip-sm">Software Engineering</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="section-title">Projects</div>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>MovieMatch · Content‑based Movie Recommendation</h3>
+          <div class="meta">Python • NumPy • Pandas</div>
+          <p>Recommends movies using content‑based filtering from user profiles, search preferences, and movie metadata. Implemented robust preprocessing pipelines with NumPy/Pandas for clean, meaningful signals.</p>
+          <div class="chips">
+            <span class="chip-sm">Recommendation System</span>
+            <span class="chip-sm">Data Cleaning</span>
+            <span class="chip-sm">Feature Engineering</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>FoodShop · Food Delivery e‑commerce</h3>
+          <div class="meta">HTML • CSS • JavaScript • React.js • MongoDB</div>
+          <p>High‑performance, responsive storefront with sign‑up/sign‑in, browsing, and add‑to‑cart flows designed for a smooth user journey.</p>
+          <div class="chips">
+            <span class="chip-sm">Auth (Login/Signup)</span>
+            <span class="chip-sm">Responsive UI</span>
+            <span class="chip-sm">Cart & Browse</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Training / Experience -->
+    <section id="experience">
+      <div class="section-title">Training & Experience</div>
+      <div class="card">
+        <h3>PwC Launchpad Trainee <span class="meta">· Jan 2025 – Jul 2025</span></h3>
+        <ul>
+          <li>Strengthened IT fundamentals, MySQL, and programming concepts.</li>
+          <li>Practiced OOP, classes & objects, arrays, and strings.</li>
+          <li>Worked with SQL DDL/DML, joins, and relational data modeling.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-title">Education</div>
+      <div class="grid">
+        <div class="card">
+          <h3>B.Tech in Computer Science & Engineering</h3>
+          <div class="meta">Chandigarh Group of Colleges, Landran · 2022–2026</div>
+          <p>CGPA: <strong>8.72</strong></p>
+        </div>
+        <div class="card">
+          <h3>Intermediate (CBSE)</h3>
+          <div class="meta">Royal Public Sr. Sec. School, Wazirpur, Gurugram · 2021–2022</div>
+          <p>Percentage: <strong>86.2%</strong></p>
+        </div>
+        <div class="card">
+          <h3>Matriculation (CBSE)</h3>
+          <div class="meta">Royal Public Sr. Sec. School, Wazirpur, Gurugram · 2019–2020</div>
+          <p>Percentage: <strong>80.2%</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+      <div class="section-title">Achievements & Patents</div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>HOLOMED‑X: Wearable X‑ray Holographic Device</h3>
+          <p>Patented innovation focused on holographic visualization of X‑ray data for wearable experiences.</p>
+          <p class="meta">Application No.: 202511046267</p>
+        </div>
+        <div class="card">
+          <h3>Hackathons & Competitions</h3>
+          <ul>
+            <li>Smart India Hackathon: <strong>2023 & 2024</strong> Participant</li>
+            <li>Code Frenzy (2024): <strong>6th</strong> position</li>
+            <li>Unstop HackOn with Amazon – Season 4: Participant</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certs">
+      <div class="section-title">Certifications</div>
+      <div class="grid cols-2">
+        <div class="card">
+          <ul>
+            <li>NPTEL (Elite): <strong>Database Management System</strong></li>
+            <li>Great Learning: <strong>HTML Attributes & Tags</strong></li>
+            <li>Red Hat: <strong>Python Programming (Certificate)</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul>
+            <li>Bootcamp on <strong>Ethical Hacking</strong> (The Hacker Central)</li>
+            <li>Amazon Web Services: <strong>Cloud Foundations</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Extracurricular & Interests -->
+    <section id="extras">
+      <div class="section-title">Extracurricular & Interests</div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Extracurricular Highlights</h3>
+          <ul>
+            <li>Student Coordinator – Parivartan 2k24 (College Event)</li>
+            <li>Team Member – Non‑Technical Treasure Event</li>
+            <li>3rd Position – Master Stroke Painting Competition (School)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Interests & Hobbies</h3>
+          <div class="chips">
+            <span class="chip-sm">Sketching</span>
+            <span class="chip-sm">Painting</span>
+            <span class="chip-sm">Singing</span>
+          </div>
+          <h3 style="margin-top:14px;">Languages</h3>
+          <div class="chips">
+            <span class="chip-sm">English</span>
+            <span class="chip-sm">Hindi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">Contact</div>
+      <div class="card">
+        <p><strong>Open to:</strong> Internships, full‑time roles, and collaborations.</p>
+        <p>
+          Email: <a href="mailto:kunnalrohilla@gmail.com">kunnalrohilla@gmail.com</a> ·
+          Phone: <a href="tel:+918882209935">+91 8882209935</a> ·
+          LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/kunal-rohilla-618765283/">Profile</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> Kunal Rohilla • Built with accessible, semantic HTML & vanilla CSS.
+    </div>
+  </footer>
+
+  <script>
+    // year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
